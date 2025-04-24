@@ -56,7 +56,7 @@ pretty_print "Updating system..."
 
 # Update the system
 sudo dnf --refresh update -y
-sudo dnf upgrade -y
+sudo dnf upgrade -y --skip-broken
 
 pretty_print "Installing Docker..."
 
