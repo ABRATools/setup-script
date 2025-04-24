@@ -1,0 +1,13 @@
+[Unit]
+Description=Central ABRA Service
+Requires=abra-lldap.service abra-backend.service
+After=abra-lldap.service abra-backend.service
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/sonarping-abra/ABRA/backend
+ExecStart=/opt/sonarping-abra/ABRA/backend/venv/bin/python3 /opt/sonarping-abra/ABRA/backend/main.py
+ExecStop=/usr/bin/kill -9 $MAINPID
+ 
+[Install]
+WantedBy=multi-user.target
