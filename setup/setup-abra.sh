@@ -107,26 +107,15 @@ sudo dnf install -y python3 python3-pip python3-devel python3-venv
 CHOICE=$(dialog --clear --title "$TITLE" --menu "$MENU" $HEIGHT $WIDTH $CHOICE_HEIGHT  "${OPTIONS[@]}" 2>&1 >/dev/tty)
 clear
 
-#compile backend
-#install backend systemd service
-  #semanage fcontext -a -t usr_t main
-  #restorecon -v main
-##configure podman network
-
-
 case $CHOICE in
   1)
     pretty_print "Setting up ABRA as a controller..."
+    source ./controller/setup-controller.sh
     ;;
-    #install lldap container
-    #install fastapi build
-    #install fastapi+lldap systemd services
-    #setup nfs
   2)
-    pretty_print "Setting up ABRA as a worker..."
+    pretty_print "Setting up the ABRA node agent..."
+    source ./compute/setup-node.sh
     ;;
-    #setup nfs mount
-    #setup podman image mount
   3)
     pretty_print "Exiting"
     exit
